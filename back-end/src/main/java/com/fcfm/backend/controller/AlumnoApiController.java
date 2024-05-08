@@ -13,16 +13,17 @@ public interface AlumnoApiController {
     ResponseEntity<Alumno> createAlumno(@RequestBody Alumno alumnoNuevo);
 
     @GetMapping("/")
-    ResponseEntity<List<Alumno>> getAlumnoList();
+    ResponseEntity<?> getAlumnoList();
 
     @GetMapping("/{idAlumno}")
-    ResponseEntity<Alumno> getAlumnoById(@PathVariable int idAlumno);
+    ResponseEntity<?> getAlumnoById(@PathVariable int idAlumno);
 
     /*UPDATE ALUMNO*/
     @PutMapping("/{idAlumno}")
-    ResponseEntity<Alumno> updateAlumno(@PathVariable int idAlumno, @RequestBody Alumno alumnoUpdate);
+    //ResponseEntity<Alumno> updateAlumno(@PathVariable int idAlumno, @RequestBody Alumno alumnoUpdate);
+    ResponseEntity<String> updateAlumno(@PathVariable int idAlumno, @RequestBody Alumno alumnoUpdate);
 
     /*DELETE ALUMNO*/
     @DeleteMapping("/{idAlumno}")
-    ResponseEntity<Alumno> deleteAlumno(@PathVariable int idAlumno);
+    ResponseEntity<String> deleteAlumno(@PathVariable int idAlumno);
 }

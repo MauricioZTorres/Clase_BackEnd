@@ -7,8 +7,8 @@ public class Alumno {
     private String apellidoMat;
     private String fechaNac;
     private String curp;
-    private Integer edad;
-    private Integer telefono;
+    //private Integer edad;
+    //private Integer telefono;
     private String email;
 
     public String getPrimerNombre() {
@@ -59,7 +59,7 @@ public class Alumno {
         this.curp = curp;
     }
 
-    public Integer getEdad() {
+    /*public Integer getEdad() {
         return edad;
     }
 
@@ -73,7 +73,7 @@ public class Alumno {
 
     public void setTelefono(Integer telefono) {
         this.telefono = telefono;
-    }
+    }*/
 
     public String getEmail() {
         return email;

@@ -4,6 +4,7 @@ import com.fcfm.backend.controller.AlumnoApiController;
 import com.fcfm.backend.model.Alumno;
 import com.fcfm.backend.service.AlumnoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,38 +29,48 @@ public class AlumnoApiControllerImpl implements AlumnoApiController {
     }
 
     @Override
-    public ResponseEntity<List<Alumno>> getAlumnoList() {
-        return ResponseEntity.ok().body(alumnoService.getAlumnoList());
-    }
-
-    @Override
-    public ResponseEntity<Alumno> getAlumnoById(@PathVariable int idAlumno) {
-        return ResponseEntity.ok().body(alumnoService.getAlumnoByID(idAlumno));
-    }
-
-    @Override
-    public ResponseEntity<Alumno> updateAlumno(@PathVariable int idAlumno, @RequestBody Alumno alumnoUpdate){
-        List<Alumno> alumnoList0 = alumnoService.getAlumnoList();
-        if (idAlumno >= alumnoList0.size()){
-            return ResponseEntity.notFound().build();
-        }
-        else {
-            alumnoService.updateAlumno(idAlumno, alumnoUpdate);
-            return ResponseEntity.ok().body(alumnoUpdate);
+    public ResponseEntity<?> getAlumnoList() {
+        try {
+            return ResponseEntity.ok().body(alumnoService.getAlumnoList());
+        } catch (Exception ex){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
         }
     }
 
     @Override
-    public ResponseEntity<Alumno> deleteAlumno(@PathVariable int idAlumno){
-        List<Alumno> alumnoList0 = alumnoService.getAlumnoList();
-        if (idAlumno >= alumnoList0.size()){
-            return ResponseEntity.notFound().build();
-        }
-        else {
-            alumnoService.deleteAlumno(idAlumno);
+    public ResponseEntity<?> getAlumnoById(@PathVariable int idAlumno) {
+        try{
             return ResponseEntity.ok().body(alumnoService.getAlumnoByID(idAlumno));
+        } catch (Exception ex){
+            //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("El alumno no existe");
         }
 
+    }
+
+    @Override
+    public ResponseEntity<String> updateAlumno(@PathVariable int idAlumno, @RequestBody Alumno alumnoUpdate){
+        try{
+            alumnoService.updateAlumno(idAlumno, alumnoUpdate);
+            //return ResponseEntity.ok().body(alumnoUpdate);
+            return ResponseEntity.ok().body("Alumno actualizado con éxtio");
+        }
+        catch(Exception exception){
+            //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exception.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("El alumno no existe");
+
+        }
+    }
+
+    @Override
+    public ResponseEntity<String> deleteAlumno(@PathVariable int idAlumno){
+        try{
+            alumnoService.deleteAlumno(idAlumno);
+            return ResponseEntity.ok().body("Alumno eliminado con éxtio");
+        }
+        catch(Exception exception){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exception.getMessage());
+        }
     }
 
 }

@@ -7,7 +7,7 @@ public class AlumnoMapper {
     public static com.fcfm.backend.model.Alumno alumnoEntityToAlumnoModel(Alumno alumno){
         com.fcfm.backend.model.Alumno model = new com.fcfm.backend.model.Alumno();
         model.setPrimerNombre(alumno.getPrimerNombre());
-        model.setSegundoNombre(alumno.getPrimerNombre());
+        model.setSegundoNombre(alumno.getSegundoNombre());
         model.setApellidoPat(alumno.getApellidoPat());
         model.setApellidoMat(alumno.getApellidoMat());
         model.setFechaNac(alumno.getFechaNac().toString());
@@ -25,7 +25,6 @@ public class AlumnoMapper {
         entity.setCurp(alumno.getCurp());
         entity.setEmail(alumno.getEmail());
         entity.setFechaNac(Date.valueOf(alumno.getFechaNac()));
-
         return entity;
     }
 }

@@ -12,7 +12,7 @@ public interface AlumnoService {
 
     Alumno getAlumnoByID(int id);
 
-    void updateAlumno(int id, Alumno infN);
+    void updateAlumno(long id, Alumno infN);
 
-    void deleteAlumno(int id);
+    void deleteAlumno(long id);
 }

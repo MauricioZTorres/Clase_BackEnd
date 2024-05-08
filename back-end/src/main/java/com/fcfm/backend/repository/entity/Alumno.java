@@ -8,7 +8,7 @@ public class Alumno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "alumnoId", nullable = false)
+    @Column(name = "alumno_id", nullable = false)
     private Long alumnoId;
 
     private String primerNombre;
@@ -39,9 +39,7 @@ public class Alumno {
 
     }
 
-    public Long getAlumnoId() {
-        return alumnoId;
-    }
+
 
     public String getPrimerNombre() {
         return primerNombre;
@@ -60,7 +58,7 @@ public class Alumno {
     }
 
     public String getApellidoPat() {
-        return apellidoPat;
+        return this.apellidoPat;
     }
 
     public void setApellidoPat(String apellidoPat) {
@@ -68,7 +66,7 @@ public class Alumno {
     }
 
     public String getApellidoMat() {
-        return apellidoMat;
+        return this.apellidoMat;
     }
 
     public void setApellidoMat(String apellidoMat) {
@@ -76,7 +74,7 @@ public class Alumno {
     }
 
     public Date getFechaNac() {
-        return fechaNac;
+        return this.fechaNac;
     }
 
     public void setFechaNac(Date fechaNac) {
@@ -84,7 +82,7 @@ public class Alumno {
     }
 
     public String getCurp() {
-        return curp;
+        return this.curp;
     }
 
     public void setCurp(String curp) {
@@ -92,13 +90,19 @@ public class Alumno {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
+    public void setAlumnoId(Long alumnoId) {
+        this.alumnoId = alumnoId;
+    }
 
+    public Long getAlumnoId() {
+        return this.alumnoId;
+    }
 }
 

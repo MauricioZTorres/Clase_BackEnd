@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class AlumnoServiceImpl implements AlumnoService{
 
-    List<Alumno> alumnoList = new ArrayList<>();
+
 
     private AlumnoRepository alumnoRepository;
 
@@ -23,6 +23,10 @@ public class AlumnoServiceImpl implements AlumnoService{
     }
 
     public List<Alumno> getAlumnoList() {
+        List<Alumno> alumnoList = new ArrayList<>();
+        for (com.fcfm.backend.repository.entity.Alumno alumno : alumnoRepository.getAlumnoList()){
+            alumnoList.add(AlumnoMapper.alumnoEntityToAlumnoModel(alumno));
+        }
         return alumnoList;
     }
 
@@ -35,12 +39,12 @@ public class AlumnoServiceImpl implements AlumnoService{
         return AlumnoMapper.alumnoEntityToAlumnoModel(alumnoEntity);
     }
 
-    public void updateAlumno(int id, Alumno infN){
-        alumnoList.set(id,infN);
+    public void updateAlumno(long id, Alumno infN){
+        alumnoRepository.actualizar(id,AlumnoMapper.alumnoModelToAlumnoEntity(infN));
     }
 
-    public void deleteAlumno(int id){
-        alumnoList.remove(id);
+    public void deleteAlumno(long id){
+        alumnoRepository.eliminar(id);
     }
 
 }
