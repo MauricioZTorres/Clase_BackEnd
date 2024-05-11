@@ -1,6 +1,7 @@
 package com.fcfm.backend.controller;
 
 import com.fcfm.backend.model.Alumno;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +11,7 @@ import java.util.List;
 public interface AlumnoApiController {
 
     @PostMapping("/")
-    ResponseEntity<Alumno> createAlumno(@RequestBody Alumno alumnoNuevo);
+    ResponseEntity<?> createAlumno(@Valid @RequestBody Alumno alumnoNuevo);
 
     @GetMapping("/")
     ResponseEntity<?> getAlumnoList();
@@ -21,7 +22,7 @@ public interface AlumnoApiController {
     /*UPDATE ALUMNO*/
     @PutMapping("/{idAlumno}")
     //ResponseEntity<Alumno> updateAlumno(@PathVariable int idAlumno, @RequestBody Alumno alumnoUpdate);
-    ResponseEntity<String> updateAlumno(@PathVariable int idAlumno, @RequestBody Alumno alumnoUpdate);
+    ResponseEntity<String> updateAlumno(@Valid @PathVariable int idAlumno, @RequestBody Alumno alumnoUpdate);
 
     /*DELETE ALUMNO*/
     @DeleteMapping("/{idAlumno}")

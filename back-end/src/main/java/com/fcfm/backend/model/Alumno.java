@@ -1,14 +1,27 @@
 package com.fcfm.backend.model;
 
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Pattern;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+
 public class Alumno {
     private String primerNombre;
     private String segundoNombre;
     private String apellidoPat;
     private String apellidoMat;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "Formato de fecha incorrecto")
     private String fechaNac;
+
+    @Size(min = 16, max = 16)
     private String curp;
-    //private Integer edad;
-    //private Integer telefono;
+
+    @Email
     private String email;
 
     public String getPrimerNombre() {
@@ -43,7 +56,7 @@ public class Alumno {
         this.apellidoMat = apellidoMat;
     }
 
-    public String getFechaNac() {
+    public String  getFechaNac() {
         return fechaNac;
     }
 

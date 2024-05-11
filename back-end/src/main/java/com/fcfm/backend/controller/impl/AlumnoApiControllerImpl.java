@@ -3,9 +3,11 @@ package com.fcfm.backend.controller.impl;
 import com.fcfm.backend.controller.AlumnoApiController;
 import com.fcfm.backend.model.Alumno;
 import com.fcfm.backend.service.AlumnoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@Validated
 public class AlumnoApiControllerImpl implements AlumnoApiController {
 
     private AlumnoService alumnoService;
@@ -23,7 +26,7 @@ public class AlumnoApiControllerImpl implements AlumnoApiController {
     }
 
     @Override
-    public ResponseEntity<Alumno> createAlumno(@RequestBody Alumno alumnoNuevo){
+    public ResponseEntity<?> createAlumno(@Valid @RequestBody Alumno alumnoNuevo){
         alumnoService.createAlumno(alumnoNuevo);
         return ResponseEntity.ok().body(alumnoNuevo);
     }
@@ -49,7 +52,7 @@ public class AlumnoApiControllerImpl implements AlumnoApiController {
     }
 
     @Override
-    public ResponseEntity<String> updateAlumno(@PathVariable int idAlumno, @RequestBody Alumno alumnoUpdate){
+    public ResponseEntity<String> updateAlumno(@Valid @PathVariable int idAlumno, @RequestBody Alumno alumnoUpdate){
         try{
             alumnoService.updateAlumno(idAlumno, alumnoUpdate);
             //return ResponseEntity.ok().body(alumnoUpdate);
