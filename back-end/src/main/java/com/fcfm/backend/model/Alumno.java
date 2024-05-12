@@ -6,7 +6,6 @@ import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
 
 public class Alumno {
     private String primerNombre;
